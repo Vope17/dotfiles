@@ -1,0 +1,146 @@
+binds {
+
+    // ────────────── Keybindings ──────────────
+    // https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+
+    // ─── noctalia-shell keybinds ───
+    // https://docs.noctalia.dev/getting-started/keybinds/
+
+    Alt+Shift+ESCAPE                     { show-hotkey-overlay; }
+
+    // ─── Applications ───
+    Alt+T                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn "alacritty"; }
+    Alt+Return                     hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Alt+B                               hotkey-overlay-title="Open Browser: Brave" { spawn "brave-origin"; }
+    Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
+    Alt+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+
+    // Please choose your own file manager.
+    Alt+E 				hotkey-overlay-title="File Explore: yazi" { spawn "wezterm-gui" "-e" "yazi"; }
+
+    // ─── Media Controls ───
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
+    XF86AudioMute                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
+    XF86AudioMicMute                    allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+    XF86AudioNext                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media next"; }
+    XF86AudioPrev                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media previous"; }
+    XF86AudioPlay                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media playPause"; }
+    XF86AudioPause                      allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media playPause"; }
+
+    // ─── Brightness Controls ───
+    XF86MonBrightnessUp                 allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call brightness increase"; }
+    XF86MonBrightnessDown               allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call brightness decrease"; }
+
+    // ─── Window Movement and Focus ───
+    Alt+X                               { close-window; }
+
+    Alt+Left                            { focus-column-left; }
+    Alt+H                               { focus-column-left; }
+    Alt+Right                           { focus-column-right; }
+    Alt+L                               { focus-column-right; }
+    Alt+Up                              { focus-window-up; }
+    Alt+K                               { focus-window-up; }
+    Alt+Down                            { focus-window-down; }
+    Alt+J                               { focus-window-down; }
+
+    Alt+CTRL+Left                       { move-column-left; }
+    Alt+CTRL+H                          { move-column-left; }
+    Alt+CTRL+Right                      { move-column-right; }
+    Alt+CTRL+L                          { move-column-right; }
+    Alt+CTRL+UP                         { move-window-up; }
+    Alt+CTRL+K                          { move-window-up; }
+    Alt+CTRL+Down                       { move-window-down; }
+    Alt+CTRL+J                          { move-window-down; }
+
+    Alt+Home                            { focus-column-first; }
+    Alt+End                             { focus-column-last; }
+    Alt+CTRL+Home                       { move-column-to-first; }
+    Alt+CTRL+End                        { move-column-to-last; }
+
+    Alt+Shift+H                      { focus-monitor-left; }
+    Alt+Shift+L                     { focus-monitor-right; }
+    Alt+Shift+K                        { focus-monitor-up; }
+    Alt+Shift+J                      { focus-monitor-down; }
+
+    Alt+Shift+CTRL+Left                 { move-column-to-monitor-left; }
+    Alt+Shift+CTRL+Right                { move-column-to-monitor-right; }
+    Alt+Shift+CTRL+UP                   { move-column-to-monitor-up; }
+    Alt+Shift+CTRL+Down                 { move-column-to-monitor-down; }
+
+    // ─── Workspace Switching ───
+    Alt+WheelScrollDown                 cooldown-ms=150 { focus-workspace-down; }
+    Alt+WheelScrollUp                   cooldown-ms=150 { focus-workspace-up; }
+    Alt+CTRL+WheelScrollDown            cooldown-ms=150 { move-column-to-workspace-down; }
+    Alt+CTRL+WheelScrollUp              cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Alt+WheelScrollRight                { focus-column-right; }
+    Alt+WheelScrollLeft                 { focus-column-left; }
+    Alt+CTRL+WheelScrollRight           { move-column-right; }
+    Alt+CTRL+WheelScrollLeft            { move-column-left; }
+
+    Alt+Shift+WheelScrollDown           { focus-column-right; }
+    Alt+Shift+WheelScrollUp             { focus-column-left; }
+    Alt+CTRL+Shift+WheelScrollDown      { move-column-right; }
+    Alt+CTRL+Shift+WheelScrollUp        { move-column-left; }
+
+    Alt+1                               { focus-workspace 1; }
+    Alt+2                               { focus-workspace 2; }
+    Alt+3                               { focus-workspace 3; }
+    Alt+4                               { focus-workspace 4; }
+    Alt+5                               { focus-workspace 5; }
+    Alt+6                               { focus-workspace 6; }
+    Alt+7                               { focus-workspace 7; }
+    Alt+8                               { focus-workspace 8; }
+    Alt+9                               { focus-workspace 9; }
+
+    Alt+CTRL+1                          { move-column-to-workspace 1; }
+    Alt+CTRL+2                          { move-column-to-workspace 2; }
+    Alt+CTRL+3                          { move-column-to-workspace 3; }
+    Alt+CTRL+4                          { move-column-to-workspace 4; }
+    Alt+CTRL+5                          { move-column-to-workspace 5; }
+    Alt+CTRL+6                          { move-column-to-workspace 6; }
+    Alt+CTRL+7                          { move-column-to-workspace 7; }
+    Alt+CTRL+8                          { move-column-to-workspace 8; }
+    Alt+CTRL+9                          { move-column-to-workspace 9; }
+
+    Alt+Shift+Up                        { move-workspace-to-monitor-up; }
+    Alt+Shift+Down                      { move-workspace-to-monitor-down; }
+    Alt+Shift+Left                      { move-workspace-to-monitor-left; }
+    Alt+Shift+Right                     { move-workspace-to-monitor-right; }
+    // Alt+TAB                             { focus-workspace-previous; }
+
+    // ─── Layout Controls ───
+    //Alt+Shift+F                          { expand-column-to-available-width; }
+    Alt+Shift+F {maximize-column;}
+    Alt+C                               { center-column; }
+    Alt+CTRL+C                          { center-visible-columns; }
+    Alt+Y                         { set-column-width "-10%"; }
+    Alt+O                         { set-column-width "+10%"; }
+    Alt+I                         { set-window-height "-10%"; }
+    Alt+U                         { set-window-height "+10%"; }
+
+    // ─── Altes ───
+    Alt+R                               { toggle-window-floating; }
+    Alt+F                               { fullscreen-window; }
+    Alt+W                              { toggle-column-tabbed-display; }
+    Alt+Q                              {switch-focus-between-floating-and-tiling; }
+
+    Alt+BracketLeft  { consume-or-expel-window-left; }
+    Alt+BracketRight { consume-or-expel-window-right; }
+
+    // ─── Screenshots ───
+    Alt+S                        { screenshot; }
+    Alt+Shift+2                        { screenshot-screen; }
+    Alt+Shift+3                        { screenshot-window; }
+
+    // ─── Emergency Escape Key ───
+    // Use this when a fullscreen app blocks your keybinds.
+    // It disables any active keyboard shortcut inhibitor, restoring control.
+    Alt+ESCAPE                          allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // ─── Exit / Power ───
+    CTRL+ALT+Delete                     { quit; } // Also quits Niri
+    Alt+Shift+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
+    Alt+P                               repeat=false { toggle-overview; }
+}
