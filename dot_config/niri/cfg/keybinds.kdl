@@ -16,7 +16,7 @@ binds {
     Alt+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
 
     // Please choose your own file manager.
-    Alt+E 				hotkey-overlay-title="File Explore: yazi" { spawn "wezterm-gui" "-e" "yazi"; }
+    Alt+E 				hotkey-overlay-title="File Explore: yazi" { spawn "alacritty" "-e" "yazi"; }
 
     // ─── Media Controls ───
     XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
