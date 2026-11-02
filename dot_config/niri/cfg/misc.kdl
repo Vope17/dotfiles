@@ -1,5 +1,5 @@
     prefer-no-csd
-    screenshot-path null
+    screenshot-path "~/ScreenShot/Screenshot-%Y-%m-%d_%H-%M-%S.png"
 
     environment {
         ELECTRON_OZONE_PLATFORM_HINT "auto"
@@ -8,6 +8,9 @@
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
         XDG_CURRENT_DESKTOP "niri"
         XDG_SESSION_TYPE "wayland"
+        XMODIFIERS "@im=fcitx"
+        QT_IM_MODULE "fcitx"
+        QT_IM_MODULES "wayland;fcitx"
         EDITOR "nvim"
     }
 
@@ -19,6 +22,7 @@
     debug {
         // Allows notification actions and window activation from Noctalia.
         honor-xdg-activation-with-invalid-serial
+        deactivate-unfocused-windows
     }
 
     hotkey-overlay {
@@ -27,3 +31,4 @@
     window-rule {
     default-column-width { proportion 1.0; }
     }
+

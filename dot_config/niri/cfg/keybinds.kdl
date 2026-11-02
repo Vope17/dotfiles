@@ -10,24 +10,33 @@ binds {
 
     // ─── Applications ───
     Alt+T                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn "alacritty"; }
-    // Alt+Return                     hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     Alt+Return { spawn-sh "noctalia msg panel-toggle launcher"; }
     Alt+Space { spawn-sh "noctalia msg panel-toggle control-center"; }
     Alt+Comma { spawn-sh "noctalia msg settings-toggle"; }
 
     Alt+B                               hotkey-overlay-title="Open Browser: Brave" { spawn "brave-origin"; }
-    Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
-    Alt+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    // Mod+ALT+L                           hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
+    // Alt+Shift+Q                        hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" { 
+      spawn-sh "noctalia msg session lock"; // Or your respective action name
+    }
+    
+    Alt+Shift+Q hotkey-overlay-title="Session Menu" { 
+      spawn-sh "noctalia msg session-menu toggle"; 
+    }
 
     // Please choose your own file manager.
-    Alt+E 				hotkey-overlay-title="File Explore: yazi" { spawn "alacritty" "-e" "yazi"; }
+    Alt+E 				hotkey-overlay-title="File Explore: yazi" { spawn "kitty" "--class" "yazi" "-e" "yazi"; }
 
     // ─── Media Controls ───
-    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
-    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
-    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
-    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
-    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
+    XF86AudioMute                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
+    XF86AudioMicMute                    allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+    XF86AudioNext                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media next"; }
+    XF86AudioPrev                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media previous"; }
+    XF86AudioPlay                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media playPause"; }
+    XF86AudioPause                      allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media playPause"; }
 
     // ─── Brightness Controls ───
     XF86MonBrightnessUp                 allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call brightness increase"; }
@@ -59,15 +68,15 @@ binds {
     Alt+CTRL+Home                       { move-column-to-first; }
     Alt+CTRL+End                        { move-column-to-last; }
 
-    Alt+Shift+H                      { focus-monitor-left; }
-    Alt+Shift+L                     { focus-monitor-right; }
-    Alt+Shift+K                        { focus-monitor-up; }
-    Alt+Shift+J                      { focus-monitor-down; }
+    CTRL+Shift+H                      { focus-monitor-left; }
+    CTRL+Shift+L                     { focus-monitor-right; }
+    CTRL+Shift+K                        { focus-monitor-up; }
+    CTRL+Shift+J                      { focus-monitor-down; }
 
-    Alt+Shift+CTRL+Left                 { move-column-to-monitor-left; }
-    Alt+Shift+CTRL+Right                { move-column-to-monitor-right; }
-    Alt+Shift+CTRL+UP                   { move-column-to-monitor-up; }
-    Alt+Shift+CTRL+Down                 { move-column-to-monitor-down; }
+    Alt+Shift+CTRL+H                 { move-column-to-monitor-left; }
+    Alt+Shift+CTRL+L                { move-column-to-monitor-right; }
+    Alt+Shift+CTRL+K                   { move-column-to-monitor-up; }
+    Alt+Shift+CTRL+J                 { move-column-to-monitor-down; }
 
     // ─── Workspace Switching ───
     Alt+WheelScrollDown                 cooldown-ms=150 { focus-workspace-down; }
@@ -94,6 +103,7 @@ binds {
     Alt+7                               { focus-workspace 7; }
     Alt+8                               { focus-workspace 8; }
     Alt+9                               { focus-workspace 9; }
+    Alt+0                               { spawn "noctalia" "msg" "panel-toggle" "noctalia/notes:panel"; }
 
     Alt+CTRL+1                          { move-column-to-workspace 1; }
     Alt+CTRL+2                          { move-column-to-workspace 2; }
@@ -131,6 +141,7 @@ binds {
     Alt+BracketRight { consume-or-expel-window-right; }
 
     // ─── Screenshots ───
+    Alt+M                        repeat=false hotkey-overlay-title="OCR: Select text region" { spawn "noctalia" "msg" "plugin" "fel/ocr:ocr" "focused" "ocr-region"; }
     Alt+S                        { screenshot; }
     Alt+Shift+2                        { screenshot-screen; }
     Alt+Shift+3                        { screenshot-window; }

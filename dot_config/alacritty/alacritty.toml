@@ -26,6 +26,10 @@ action = "Paste"
 key = "Copy"
 action = "Copy"
 [[keyboard.bindings]]
+key = "Space"
+mods = "Control|Shift"
+action = "None"
+[[keyboard.bindings]]
 key = "V"
 mods = "Control|Shift"
 action = "Paste"
